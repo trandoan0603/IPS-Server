@@ -17,13 +17,13 @@ y_train = data.iloc[:,3].values
 clf = neighbors.KNeighborsClassifier(3)
 clf.fit(X_train,y_train)'''
 
-data = pd.read_csv('./trainData1.csv',header=None)
-X_train = data.iloc[1:,:3].values
-y_train = data.iloc[1:,3].values
+data = pd.read_csv('./rssiData5.csv',header=None)
+X_train = data.iloc[1:,:5].values
+y_train = data.iloc[1:,5].values
 clf = neighbors.KNeighborsClassifier(3)
 clf.fit(X_train,y_train)
 
-wifiName = data.iloc[0,0] + "," + data.iloc[0,1] + "," + data.iloc[0,2]
+wifiName = data.iloc[0,0] + "," + data.iloc[0,1] + "," + data.iloc[0,2] + "," + data.iloc[0,3] + "," + data.iloc[0,4]
 
 
 #db_connect = create_engine('sqlite:///chinook.db')
@@ -50,15 +50,17 @@ class Hello(Resource):
         print(a["a"])
         print(a["b"])
         print(a["c"])
-        d = [[a["a"],a["b"],a["c"]]]
-        print(d)
+        print(a["d"])
+        print(a["e"])
+        f = [[a["a"],a["b"],a["c"],a["d"],a["e"]]]
+        print(f)
 
         '''json_dump = json.dumps({'a': knn1(d)},cls = NumpyEncoder)
         print(json_dump)
         n = str(json_dump)
         print(n)
         print(type(n))'''
-        return {"a":str(knn1(d))}
+        return {"a":str(knn1(f))}
     '''def get(self):
         return knn(a)'''
 
